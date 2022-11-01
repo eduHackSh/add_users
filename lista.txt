@@ -1,0 +1,3 @@
+Carlos;Perez;carlosperez@gmail.com;carper;password;Gerente
+Pepe;Penia;pepito4@yahoo.com;pepenia;password;Administrador
+Faloper;Fisura;falop@hotmail.com;falura;password;Programador
