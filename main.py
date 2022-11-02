@@ -1,7 +1,7 @@
 import os
 import sys
 import subprocess
-
+import smtplib, ssl
 
 
 #Funciones
@@ -13,6 +13,28 @@ def add_us(user, passwd, desc):
     except TimeOutExpired:
         proc.kill()
         outs, errs = proc.communicate()
+
+confirmMail = True
+
+
+
+def send_email(mail, password, receiver):
+    if confirmMail:
+        smtp_address = 'smtp.gmail.com'
+        smtp_port = 465
+
+        email_address = mail
+        email_password = password
+        
+        context = ssl.create_default_context()
+
+
+        with smtplib.SMTP_SSL(smtp_address, smtp_port, context=context) as server:
+
+            server.login(email_address, email_password)
+            
+            server.sendmail(email_address, receiver, 'contenido del mail')
+
 
 
 #Abrir el archivo de usuarios
@@ -44,6 +66,10 @@ while i < cLineas:
     desc = f'{nombre} {apellido} - {cargo}'
     add_us(user, passwd, desc)
     i += 1
+
+
+send_email('piedadedutest@gmail.com', 'djypybhrmwrvafgg','eduardopiedad1@gmail.com')
+
 
 
 
