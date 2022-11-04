@@ -1,15 +1,13 @@
 import re
 
-subject = ""
-body = ""
+def get_message():
+    archivo = open("body.txt", "rt")
+    texto = archivo.read()
+    archivo.close()
+    r = re.findall('{([^}]*)}', texto)
+    return r
 
-archivo = open("body.txt", "rt")
-
-texto = archivo.read()
 
 
 
-r = re.findall('[^ASUNTO:] [?\}](.*)(?!})', texto)
-
-print(r[0])
 

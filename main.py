@@ -4,7 +4,7 @@ import subprocess
 import smtplib, ssl
 from dotenv import load_dotenv
 from email.message import EmailMessage
-
+import body
 
 #Funciones
 def add_us(user, passwd, desc):
@@ -29,12 +29,12 @@ def send_email(receiver, message):
         load_dotenv()
         email_pass = os.getenv("MAIL_PASSWORD")
         context = ssl.create_default_context()
-        
+        bodyMess = body.get_message()
         msg = EmailMessage()
-        msg['Subject'] = "Asunto del correo"
+        msg['Subject'] = bodyMess[0]
         msg['From'] = email_address
         msg['To'] = receiver
-        msg.set_content(message)
+        msg.set_content(bodyMess[1])
 
 
         with smtplib.SMTP_SSL(smtp_address, smtp_port, context=context) as server:
