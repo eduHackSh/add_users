@@ -2,6 +2,8 @@ import os
 import sys
 import subprocess
 import smtplib, ssl
+from dotenv import load_dotenv
+from email.message import EmailMessage
 
 
 #Funciones
@@ -18,22 +20,28 @@ confirmMail = True
 
 
 
-def send_email(mail, password, receiver):
+def send_email(receiver, message):
     if confirmMail:
         smtp_address = 'smtp.gmail.com'
         smtp_port = 465
-
-        email_address = mail
-        email_password = password
         
+        email_address = "piedadedutest@gmail.com"
+        load_dotenv()
+        email_pass = os.getenv("MAIL_PASSWORD")
         context = ssl.create_default_context()
+        
+        msg = EmailMessage()
+        msg['Subject'] = "Asunto del correo"
+        msg['From'] = email_address
+        msg['To'] = receiver
+        msg.set_content(message)
 
 
         with smtplib.SMTP_SSL(smtp_address, smtp_port, context=context) as server:
-
-            server.login(email_address, email_password)
+        
+            server.login(email_address, email_pass)
             
-            server.sendmail(email_address, receiver, 'contenido del mail')
+            server.send_message(msg)
 
 
 
@@ -65,10 +73,12 @@ while i < cLineas:
     passwd = lArray[4]
     desc = f'{nombre} {apellido} - {cargo}'
     add_us(user, passwd, desc)
+
+
     i += 1
 
 
-send_email('piedadedutest@gmail.com', 'djypybhrmwrvafgg','eduardopiedad1@gmail.com')
+send_email("eduardopiedad1@gmail.com", "Mensaje del correo")
 
 
 
