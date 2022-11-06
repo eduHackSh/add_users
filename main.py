@@ -20,7 +20,7 @@ confirmMail = True
 
 
 
-def send_email(receiver, message):
+def send_email(receiver, name, surname, user, passwd):
     if confirmMail:
         smtp_address = 'smtp.gmail.com'
         smtp_port = 465
@@ -34,8 +34,13 @@ def send_email(receiver, message):
         msg['Subject'] = bodyMess[0]
         msg['From'] = email_address
         msg['To'] = receiver
-        msg.set_content(bodyMess[1])
-
+        bodyM = bodyMess[1]
+        bodyM = bodyM.replace('NAME', name)
+        bodyM = bodyM.replace('SURNAME', surname)
+        bodyM = bodyM.replace('USER', user)
+        bodyM = bodyM.replace('PASSWORD', passwd)
+        msg.set_content(bodyM)
+        
 
         with smtplib.SMTP_SSL(smtp_address, smtp_port, context=context) as server:
         
@@ -73,12 +78,11 @@ while i < cLineas:
     passwd = lArray[4]
     desc = f'{nombre} {apellido} - {cargo}'
     add_us(user, passwd, desc)
-
-
+    send_email(correo, nombre, apellido, user, passwd)
     i += 1
 
 
-send_email("eduardopiedad1@gmail.com", "Mensaje del correo")
+#send_email("eduardopiedad1@gmail.com", "Mensaje del correo")
 
 
 
