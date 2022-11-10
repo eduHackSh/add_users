@@ -8,6 +8,9 @@ import time
 import body
 import readex
 
+#Variable para saber si mandar mail o no
+confirmMail = True
+
 
 #Funciones
 def add_us(user, passwd, desc):
@@ -19,7 +22,6 @@ def add_us(user, passwd, desc):
         proc.kill()
         outs, errs = proc.communicate()
 
-confirmMail = True
 
 def send_email(receiver, name, surname, user, passwd):
     if confirmMail:
@@ -49,6 +51,7 @@ def send_email(receiver, name, surname, user, passwd):
             server.send_message(msg)
             server.close()
 
+#Momento en el que el usuario elije que tipo de archivo leer
 whatRead = input('Que tipo de archivo deberia leer?\n[E] = excel file\n[T] = txt file\n')
 whatRead.upper()
 
@@ -71,14 +74,21 @@ if whatRead == "T":
     while i < cLineas:
         linea = archivo.readline().rstrip('\n')
         lArray = linea.split(';')
+        #Almacenando los datos en variables individuales
         nombre= lArray[0]
         apellido= lArray[1]
         correo= lArray[2]
         user= lArray[3]
         cargo=lArray[5]
         passwd = lArray[4]
+        
+        #Combinando algunas variables para generar la descripcion del usuario
         desc = f'{nombre} {apellido} - {cargo}'
+        
+        #Aviso de la cantidad de usuarios que se detectaron el el archivo
         print(f"Se registraran un total de {cLineas} usuarios")
+        
+        #Variable para confirmar si quiere adicionar esos usuarios
         confirm = input("Confirmar [S/N]\n")
         confirm.upper()
         if confirm == "S":
@@ -92,13 +102,21 @@ if whatRead == "T":
 
     archivo.close()
 
+#Secuencia en el caso de que se use un excel como lista de usuarios
 elif whatRead == "E":
-    maxRow = readex.maxRow()
+    
+    #la variable para almacenar la sheet siempre tiene que llamarse "sheet"
+    sheet = readex.Open_Book()
+    #Row = datos del usuario
+    maxRow = readex.maxRow(sheet)
+    #se hace maxRow - 1 porque la primera fila son los nombres de las columnas
     print(f'Se registraran un total de {maxRow - 1} usuarios')
+    
     confirm = input("Confirmar [S/N]\n")
     confirm.upper()
     if confirm == "S":
-        lst = readex.Obtain_Users()
+
+        lst = readex.Obtain_Users(sheet)
         for r in lst:
             nombre = r["nombre"]
             apellido = r["apellido"]
@@ -107,8 +125,10 @@ elif whatRead == "E":
             user = r["user"]
             passwd = r["password"]
             desc = f"{nombre} {apellido} - {cargo}"
-
-            print(desc)
+            
+            add_us(user, passwd, desc)
+            send_email(email, nombre, apellido, user, passwd)
+            
     else:
         print("Saliendo...")
         time.sleep(2)

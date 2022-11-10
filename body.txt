@@ -1,9 +1,9 @@
 ASUNTO:{Ya tienes usuario en nuestro sistema}
-CUERPO:{¡Hola, NAME SURNAME, queremos informarte que ya cuentas con un usuario en el sistema para trabajar con nosotros
+CUERPO:{¡Hola, $NAME $SURNAME, queremos informarte que ya cuentas con un usuario en el sistema para trabajar con nosotros
 
 Para conectarte al sistema debes usar las siguientes credenciales:
-USUARIO: USER
-CONTRASEÑA: PASSWORD
+USUARIO: $USER
+CONTRASEÑA: $PASSWORD
 
 Por motivos de seguridad te pedimos que cambies la contraseña por defecto a una mas segura.
 
