@@ -1,5 +1,5 @@
 # add_users
-A Python program that add users in Linux system using a structured document.
+A Python program that add users in Linux system using a structured document and send personalized email for them.
 
 Installation:
  - Clone the repository in your system:
