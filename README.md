@@ -45,7 +45,7 @@ Own Functions:
   
   - Obtain_Users(sheet) -> Obtain all the data of the users and return a array with dicts of the user data.
   
-  - add_us(user, passwd, desc) -> Excec a linux command for add users, using 3 variables passed as arguments.
+  - add_us(user, passwd, desc) -> Run a linux command for add users, using 3 variables passed as arguments.
     user: user id
     passwd: user password
     desc: user comment, a description basically.
