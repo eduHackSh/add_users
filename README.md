@@ -6,18 +6,16 @@ Installation:
   $ git clone https://github.com/eduHackSh/add_users.git
  - Install the requeriments that not are installed in your system:
   $ python3 -m pip install dotenv
+  Note: if you don't want to send mail to the users, change the confirmMail variable to False in main.py file.
 
 Use guide:
   1) Edit the .env file to change MAIL_PASSWORD and MAIL_ADDRESS. These are YOUR credentials to send mail and login with smtp server.
-  
-  Note: if you don't want to send mail to the users, change the confirmMail variable to False in main.py file.
   2) Edit the body.txt file:
     - The first pair of keys "ASUNTO:{any subject}" contain the subject of the email.
     - The second pair of keys "CUERPO:{any body}" contain the body of the email.
     - Inside the file exists variables what can you use to make the email personalized to the user.
       $USER (user id), $PASSWORD (user password), $NAME and $SURNAME (name and surname of the user).
       You can use this variables anywhere in the message and the program change this part to the data of current user.
-      
   3) You must decide what type of file to use, and put in the program directory:
     - If you have a excel (.xlsx):
       The excel sheet has to be structured as follow:
@@ -25,7 +23,6 @@ Use guide:
     - If you have a txt (strictly named "lista.txt"):
       The text has to be structured as follow:
       [![archivo-de-ejemplo-txt-edit.jpg](https://i.postimg.cc/J024mWy0/archivo-de-ejemplo-txt-edit.jpg)](https://postimg.cc/dZGKmpjc)
-      
   4) Excecute main.py has sudo (or changes the permissions for add users) and follow the instructions it will give you.
 
 Files:
