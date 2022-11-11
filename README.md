@@ -54,7 +54,7 @@ Own Functions:
     user: user id
     passwd: user password
 
-Libraries used: smtplib, ssl, system, os, subprocess, email.message, re, dotenv, time.
+Modules and libraries used: smtplib, ssl, system, os, subprocess, email.message, re, dotenv, time, string.
 
 The program have several things to improve (ignoring that the code is a bit disorganized, the spainglish, etc etc). A example to add: include the user groups.
 That's why I leave it here so you can improve it if you want :).
