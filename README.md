@@ -23,7 +23,7 @@ Use guide:
     - If you have a txt (strictly named "lista.txt"):
       The text has to be structured as follow:
       [![archivo-de-ejemplo-txt-edit.jpg](https://i.postimg.cc/J024mWy0/archivo-de-ejemplo-txt-edit.jpg)](https://postimg.cc/dZGKmpjc)
-  4) Excecute main.py has sudo (or changes the permissions for add users) and follow the instructions it will give you.
+  4) Excecute main.py as sudo (or changes the permissions for add users) and follow the instructions it will give you.
 
 Files:
   - .env -> Have the credentials of the email sender. Note: MAIL_PASSWORD is not your email password. Check: https://hotter.io/docs/email-accounts/app-password-gmail/
