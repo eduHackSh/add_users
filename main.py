@@ -53,7 +53,7 @@ def send_email(receiver, name, surname, user, passwd):
 
 #Momento en el que el usuario elije que tipo de archivo leer
 whatRead = input('Que tipo de archivo deberia leer?\n[E] = excel file\n[T] = txt file\n')
-whatRead.upper()
+whatRead = whatRead.upper()
 
 if whatRead == "T":
 #Abrir el archivo de usuarios
@@ -90,7 +90,7 @@ if whatRead == "T":
         
         #Variable para confirmar si quiere adicionar esos usuarios
         confirm = input("Confirmar [S/N]\n")
-        confirm.upper()
+        confirm = confirm.upper()
         if confirm == "S":
             add_us(user, passwd, desc)
             send_email(correo, nombre, apellido, user, passwd)
@@ -113,7 +113,7 @@ elif whatRead == "E":
     print(f'Se registraran un total de {maxRow - 1} usuarios')
     
     confirm = input("Confirmar [S/N]\n")
-    confirm.upper()
+    confirm = confirm.upper()
     if confirm == "S":
 
         lst = readex.Obtain_Users(sheet)
